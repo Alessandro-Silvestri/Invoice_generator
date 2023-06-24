@@ -43,4 +43,29 @@ amount: <amount value value showing the currency>
 ]
 }
 
+Total
 '''
+
+##### Program ##################################################
+class InvoiceGenerator():
+    def __init__(self) -> None:
+        self.total = 0
+        self.lines = []
+
+    def row(self, desc:str, quant:int, rate:int):
+        amount = quant * rate
+        self.total += amount
+        self.lines.append(f"{desc}, quantity: {quant}, rate: {rate}, amount: {amount}")
+    
+    def show_invoice(self):
+        for i in self.lines:
+            print(i)
+        print(f"TOTAL: {self.total}")
+
+
+invoice = InvoiceGenerator()
+invoice.row("photostudio", 2, 150)
+invoice.row("photostudio", 1, 150)
+invoice.row("photostudio", 2, 125)
+invoice.row("photostudio", 1, 125)
+invoice.show_invoice()
