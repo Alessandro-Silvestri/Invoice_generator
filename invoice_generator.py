@@ -75,17 +75,17 @@ rows = int(input("How many lines you need? "))
 
 # Loop for asking the main lines
 for i in range(rows):
+    print(f"\n-----LINE {i+1} -----")
     desc = input("Insert description: ")
     quant = int(input("Insert quantity: "))
     rate = int(input("Insert rate: "))
-    print("-"*10)
     invoice.row(desc=desc, quant=quant, rate=rate)
 
-notes = input("Insert any notes: ")
+notes = input("\nInsert any notes: ")
 
 
 # Output
-print("Invoice number: ", invoice_number)
+print("\nInvoice number: ", invoice_number)
 print("Date: ", date)
 print("Invoice from: ", invoice_from)
 print("Invoice to: ", invoice_to)
