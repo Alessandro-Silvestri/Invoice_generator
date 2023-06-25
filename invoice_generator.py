@@ -67,12 +67,13 @@ invoice = InvoiceGenerator()
 
 
 # User Interface
-# invoice_number = input("Invoice number: ")
-# date = input("Date: ")
-# invoice_from = input("Invoice from: ")
-# invoice_to = input("Invoice to: ")
-rows = 3
+invoice_number = input("Invoice number: ")
+date = input("Date: ")
+invoice_from = input("Invoice from: ")
+invoice_to = input("Invoice to: ")
+rows = int(input("How many lines you need? "))
 
+# Loop for asking the main lines
 for i in range(rows):
     desc = input("Insert description: ")
     quant = int(input("Insert quantity: "))
@@ -80,7 +81,21 @@ for i in range(rows):
     print("-"*10)
     invoice.row(desc=desc, quant=quant, rate=rate)
 
+notes = input("Insert any notes: ")
+
+
+# Output
+print("Invoice number: ", invoice_number)
+print("Date: ", date)
+print("Invoice from: ", invoice_from)
+print("Invoice to: ", invoice_to)
+
 invoice.show_invoice()
+print(notes)
+
+
+
+
 
 '''
 invoice.row("photostudio", 2, 150)
