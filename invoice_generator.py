@@ -33,6 +33,7 @@ invoice_number
 date
 invoice_from
 invoice_to
+rows
 
 row[
 {
@@ -62,10 +63,29 @@ class InvoiceGenerator():
             print(i)
         print(f"TOTAL: {self.total}")
 
-
 invoice = InvoiceGenerator()
+
+
+# User Interface
+# invoice_number = input("Invoice number: ")
+# date = input("Date: ")
+# invoice_from = input("Invoice from: ")
+# invoice_to = input("Invoice to: ")
+rows = 3
+
+for i in range(rows):
+    desc = input("Insert description: ")
+    quant = int(input("Insert quantity: "))
+    rate = int(input("Insert rate: "))
+    print("-"*10)
+    invoice.row(desc=desc, quant=quant, rate=rate)
+
+invoice.show_invoice()
+
+'''
 invoice.row("photostudio", 2, 150)
 invoice.row("photostudio", 1, 150)
 invoice.row("photostudio", 2, 125)
 invoice.row("photostudio", 1, 125)
 invoice.show_invoice()
+'''
