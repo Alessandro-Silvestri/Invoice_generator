@@ -50,20 +50,45 @@ Total
 '''
 
 ##### Program ##################################################
-# everything work!!!!
-def pretty_line(name:str, invoice_num,):
-    space = " "
-    invoice_num_len = len(str(invoice_num))
-    space_num = 56 - len(name) - invoice_num_len
-    return f"-"*67 + f"\n{name}{space*space_num}Invoice N. {invoice_num}"
+class Terminal_user_interface():
+    def pretty_line(self, name:str, invoice_num,):
+        space = " "
+        invoice_num_len = len(str(invoice_num))
+        space_num = 56 - len(name) - invoice_num_len
+        return f"-"*67 + f"\n{name}{space*space_num}Invoice N. {invoice_num}"
+    
+    def user_inputs(self):
+        # User Interface
+        self.invoice_number = input("Invoice number: ")
+        self.date = input("Date: ")
+        self.invoice_from = input("Invoice from: ")
+        self.invoice_from_address = input("Address: ")
+        self.invoice_to = input("Invoice to: ")
+        self.invoice_to_address = input("Address: ")
+        self.rows = int(input("How many lines you need? "))
+
+        # Loop for asking the main lines
+        for i in range(self.rows):
+            print(f"\n-----LINE {i+1} -----")
+            self.desc = input("Insert description: ")
+            self.quant = int(input("Insert quantity: "))
+            self.rate = int(input("Insert rate: "))
+            invoice.row(desc=self.desc, quant=self.quant, rate=self.rate)
+        self.notes = input("\nInsert any notes: ")
+    
+    def output(self):
+        print("\nInvoice number: ", self.invoice_number)
+        print("Date: ", self.date)
+        print("Invoice from: ", self.invoice_from)
+        print("Address: ", self.invoice_from_address)
+        print("Invoice to: ", self.invoice_to)
+        print("Address: ", self.invoice_to_address)
+        invoice.show_invoice()
+        print(self.notes)
 
 
-# everything work!!!!
-print(pretty_line("Alex", 1))
-
-
-class InvoiceGenerator():
-    def __init__(self) -> None:
+class InvoiceGenerator(Terminal_user_interface):
+    def __init__(self):
         self.total = 0
         self.lines = []
 
@@ -77,39 +102,10 @@ class InvoiceGenerator():
             print(i)
         print(f"TOTAL: {self.total}")
 
+
 invoice = InvoiceGenerator()
-
-
-# User Interface
-invoice_number = input("Invoice number: ")
-date = input("Date: ")
-invoice_from = input("Invoice from: ")
-invoice_from_address = input("Address: ")
-invoice_to = input("Invoice to: ")
-invoice_to_address = input("Address: ")
-rows = int(input("How many lines you need? "))
-
-# Loop for asking the main lines
-for i in range(rows):
-    print(f"\n-----LINE {i+1} -----")
-    desc = input("Insert description: ")
-    quant = int(input("Insert quantity: "))
-    rate = int(input("Insert rate: "))
-    invoice.row(desc=desc, quant=quant, rate=rate)
-
-notes = input("\nInsert any notes: ")
-
-
-# Output
-print("\nInvoice number: ", invoice_number)
-print("Date: ", date)
-print("Invoice from: ", invoice_from)
-print("Address: ", invoice_from_address)
-print("Invoice to: ", invoice_to)
-print("Address: ", invoice_to_address)
-
-invoice.show_invoice()
-print(notes)
+invoice.user_inputs()
+invoice.output()
 
 
 '''
