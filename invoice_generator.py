@@ -3,53 +3,6 @@ INVOICE GENERATOR
 Project by Alessandro Silvestri 2023
 '''
 
-'''
-##### INPUT ##################################################
-
-invoice_number
-date
-currency
-invoice_from
-invoice_to
-
-INPUT list
-
-row[
-{
-description: "describe the job done",
-quantity: <1>,
-rate: <price value>
-amount: <amount value value showing the currency>
-}
-]
-
-notes
-
-
-##### OUTPUT ##################################################
-
-
-invoice_number
-date
-invoice_from
-address invoice_from
-invoice_to
-address invoice_to
-rows
-
-row[
-{
-description: "description",
-quantity: <quantity>,
-rate: <value>
-amount: <amount value value showing the currency>
-]
-}
-
-Total
-'''
-
-##### Program ##################################################
 class Terminal_user_interface():
     def pretty_line(self, name:str, invoice_num,):
         space = " "
@@ -66,7 +19,6 @@ class Terminal_user_interface():
         self.invoice_to = input("Invoice to: ")
         self.invoice_to_address = input("Address: ")
         self.rows = int(input("How many lines you need? "))
-
         # Loop for asking the main lines
         for i in range(self.rows):
             print(f"\n-----LINE {i+1} -----")
@@ -75,16 +27,27 @@ class Terminal_user_interface():
             self.rate = int(input("Insert rate: "))
             invoice.row(desc=self.desc, quant=self.quant, rate=self.rate)
         self.notes = input("\nInsert any notes: ")
+        print("\n\n\n")
     
     def output(self):
-        print("\nInvoice number: ", self.invoice_number)
-        print("Date: ", self.date)
-        print("Invoice from: ", self.invoice_from)
-        print("Address: ", self.invoice_from_address)
-        print("Invoice to: ", self.invoice_to)
-        print("Address: ", self.invoice_to_address)
-        invoice.show_invoice()
-        print(self.notes)
+        print(self.pretty_line(self.invoice_from, self.invoice_number))
+        print(self.invoice_from_address)
+        print(f"\n\nInvoice to:\n{self.invoice_to}\n{self.invoice_to_address}")
+        
+
+
+
+
+        ############### UNTIL HERE ##################################################
+        # print the lines about job
+        print("item:                              quantity       rate       Amount")
+        for i in self.lines:
+            print(i)
+        ############### UNTIL HERE ##################################################
+
+
+
+
 
 
 class InvoiceGenerator(Terminal_user_interface):
@@ -96,12 +59,6 @@ class InvoiceGenerator(Terminal_user_interface):
         amount = quant * rate
         self.total += amount
         self.lines.append(f"{desc}, quantity: {quant}, rate: {rate}, amount: {amount}")
-    
-    def show_invoice(self):
-        for i in self.lines:
-            print(i)
-        print(f"TOTAL: {self.total}")
-
 
 invoice = InvoiceGenerator()
 invoice.user_inputs()
@@ -109,7 +66,7 @@ invoice.output()
 
 
 '''
-Output I want:
+
 -------------------------------------------------------------------
 Invoice from:
 <invoice from>                                    Invoice N.<value>
@@ -123,13 +80,13 @@ Invoice to:
 
 item:                              quantity       rate       Amount
 --------------------------------------------------------------------
-Job description                           1        150 £       125 £  
+Job description                           1       150 £        125 £  
 --------------------------------------------------------------------
-Job description                           1        150 £       125 £  
+Job description                           1       150 £        125 £  
 --------------------------------------------------------------------
-Photo                                     1        150 £       125 £
+Photo                                     1       150 £        125 £
 
-                                                          TOTAL 375
+                                                           TOTAL 375
 
 Notes
 <notes>
