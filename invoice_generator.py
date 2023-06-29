@@ -94,7 +94,44 @@ invoice.show_invoice()
 print(notes)
 
 
+'''
+Output I want:
+-------------------------------------------------------------------
+<invoice from>                                    Invoice N.<value>
 
+<invoice_to>
+
+item:                              quantity       rate       Amount
+--------------------------------------------------------------------
+Job description                           1        150 £       125 £  
+--------------------------------------------------------------------
+Job description                           1        150 £       125 £  
+--------------------------------------------------------------------
+Photo                                     1        150 £       125 £
+
+                                                          TOTAL 375
+
+Notes
+<notes>
+
+'''
+
+
+
+'''
+current OUTPUT:
+
+Invoice number:  1
+Date:  25/06/2023gi
+Invoice from:  ALex
+Invoice to:  Vanity
+photo, quantity: 1, rate: 125, amount: 125
+photo, quantity: 2, rate: 150, amount: 300
+TOTAL: 425
+banck account
+
+
+'''
 
 
 '''
