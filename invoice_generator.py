@@ -66,6 +66,29 @@ invoice.output()
 
 
 '''
+######################################   try.py   ######################################
+# building the function for printing the lines
+# result should be:
+item:                              quantity       rate       Amount
+--------------------------------------------------------------------
+Job description                           1       150 £        125 £  
+
+
+
+job = "Job description"
+quantity = 1
+rate = 150
+amount = 150
+
+def print_line(job, quantity, rate, amount):
+    space = " "
+    return f"{job}{space*23}{quantity}{space*12}{rate}{space*11}{amount}"
+
+print("item:                              quantity       rate        Amount")
+print("--------------------------------------------------------------------")
+print(print_line(job, quantity, rate, amount))
+######################################   try.py   ######################################
+
 
 -------------------------------------------------------------------
 Invoice from:
