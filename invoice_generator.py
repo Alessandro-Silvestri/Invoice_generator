@@ -32,7 +32,9 @@ notes
 invoice_number
 date
 invoice_from
+address invoice_from
 invoice_to
+address invoice_to
 rows
 
 row[
@@ -48,6 +50,18 @@ Total
 '''
 
 ##### Program ##################################################
+# everything work!!!!
+def pretty_line(name:str, invoice_num,):
+    space = " "
+    invoice_num_len = len(str(invoice_num))
+    space_num = 56 - len(name) - invoice_num_len
+    return f"-"*67 + f"\n{name}{space*space_num}Invoice N. {invoice_num}"
+
+
+# everything work!!!!
+print(pretty_line("Alex", 1))
+
+
 class InvoiceGenerator():
     def __init__(self) -> None:
         self.total = 0
@@ -70,7 +84,9 @@ invoice = InvoiceGenerator()
 invoice_number = input("Invoice number: ")
 date = input("Date: ")
 invoice_from = input("Invoice from: ")
+invoice_from_address = input("Address: ")
 invoice_to = input("Invoice to: ")
+invoice_to_address = input("Address: ")
 rows = int(input("How many lines you need? "))
 
 # Loop for asking the main lines
@@ -88,7 +104,9 @@ notes = input("\nInsert any notes: ")
 print("\nInvoice number: ", invoice_number)
 print("Date: ", date)
 print("Invoice from: ", invoice_from)
+print("Address: ", invoice_from_address)
 print("Invoice to: ", invoice_to)
+print("Address: ", invoice_to_address)
 
 invoice.show_invoice()
 print(notes)
@@ -97,9 +115,15 @@ print(notes)
 '''
 Output I want:
 -------------------------------------------------------------------
+Invoice from:
 <invoice from>                                    Invoice N.<value>
+<address>
 
+Invoice to:
 <invoice_to>
+<address>
+
+
 
 item:                              quantity       rate       Amount
 --------------------------------------------------------------------
