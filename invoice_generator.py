@@ -4,12 +4,24 @@ Project by Alessandro Silvestri 2023
 '''
 
 class Terminal_user_interface():
-    def pretty_line(self, name:str, invoice_num,):
+    def pretty_header(self, name:str, invoice_num,):
         space = " "
         invoice_num_len = len(str(invoice_num))
         space_num = 56 - len(name) - invoice_num_len
         return f"-"*67 + f"\n{name}{space*space_num}Invoice N. {invoice_num}"
     
+    def pretty_print_line(self, job, quantity, rate, amount):
+        space = " "
+        space1 = 43 - len(job) - len(str(quantity))
+        space2 = 11 - len(str(rate))
+        space3 = 14 - len(str(amount))
+        return f"{job}{space*space1}{quantity}{space*space2}{rate}{space*space3}{amount}"
+    
+    def pretty_total(self, t):
+        space = " "
+        spaces = 61 - len(str(t))
+        return f"{space*spaces}TOTAL: {t}"
+
     def user_inputs(self):
         # User Interface
         self.invoice_number = input("Invoice number: ")
@@ -30,24 +42,20 @@ class Terminal_user_interface():
         print("\n\n\n")
     
     def output(self):
-        print(self.pretty_line(self.invoice_from, self.invoice_number))
+        # header
+        print(self.pretty_header(self.invoice_from, self.invoice_number))
         print(self.invoice_from_address)
         print(f"\n\nInvoice to:\n{self.invoice_to}\n{self.invoice_to_address}")
-        
-
-
-
-
-        ############### UNTIL HERE ##################################################
-        # print the lines about job
-        print("item:                              quantity       rate       Amount")
-        for i in self.lines:
-            print(i)
-        ############### UNTIL HERE ##################################################
-
-
-
-
+        # main lines
+        print("\n\n\n\n\nitem:                              quantity       rate        Amount")
+        print("-"*68)
+        for i in range(len(self.lines)):
+            print(self.pretty_print_line(self.lines[i][0], self.lines[i][1], self.lines[i][2], self.lines[i][3]))
+            print("-"*68)
+        # total
+        print(self.pretty_total(self.total))
+        print("\n\n\n")
+        print(f"Notes:\n{self.notes}")
 
 
 class InvoiceGenerator(Terminal_user_interface):
@@ -58,86 +66,8 @@ class InvoiceGenerator(Terminal_user_interface):
     def row(self, desc:str, quant:int, rate:int):
         amount = quant * rate
         self.total += amount
-        self.lines.append(f"{desc}, quantity: {quant}, rate: {rate}, amount: {amount}")
+        self.lines.append([desc, quant, rate, amount])
 
 invoice = InvoiceGenerator()
 invoice.user_inputs()
 invoice.output()
-
-
-'''
-######################################   try.py   ######################################
-# building the function for printing the lines
-# result should be:
-item:                              quantity       rate       Amount
---------------------------------------------------------------------
-Job description                           1       150 £        125 £  
-
-
-
-job = "Job description"
-quantity = 1
-rate = 150
-amount = 150
-
-def print_line(job, quantity, rate, amount):
-    space = " "
-    return f"{job}{space*23}{quantity}{space*12}{rate}{space*11}{amount}"
-
-print("item:                              quantity       rate        Amount")
-print("--------------------------------------------------------------------")
-print(print_line(job, quantity, rate, amount))
-######################################   try.py   ######################################
-
-
--------------------------------------------------------------------
-Invoice from:
-<invoice from>                                    Invoice N.<value>
-<address>
-
-Invoice to:
-<invoice_to>
-<address>
-
-
-
-item:                              quantity       rate       Amount
---------------------------------------------------------------------
-Job description                           1       150 £        125 £  
---------------------------------------------------------------------
-Job description                           1       150 £        125 £  
---------------------------------------------------------------------
-Photo                                     1       150 £        125 £
-
-                                                           TOTAL 375
-
-Notes
-<notes>
-
-'''
-
-
-
-'''
-current OUTPUT:
-
-Invoice number:  1
-Date:  25/06/2023gi
-Invoice from:  ALex
-Invoice to:  Vanity
-photo, quantity: 1, rate: 125, amount: 125
-photo, quantity: 2, rate: 150, amount: 300
-TOTAL: 425
-banck account
-
-
-'''
-
-
-'''
-invoice.row("photostudio", 2, 150)
-invoice.row("photostudio", 1, 150)
-invoice.row("photostudio", 2, 125)
-invoice.row("photostudio", 1, 125)
-invoice.show_invoice()
-'''
