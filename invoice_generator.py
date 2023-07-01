@@ -1,6 +1,8 @@
 '''
 INVOICE GENERATOR
-Project by Alessandro Silvestri 2023
+It works 
+Made by Alessandro Silvestri © 2023 <alessandro.silvestri.work@gmail.com>
+
 '''
 
 class Terminal_user_interface():
@@ -21,25 +23,53 @@ class Terminal_user_interface():
         space = " "
         spaces = 61 - len(str(t))
         return f"{space*spaces}TOTAL: {t}"
+    
+    def error(self):
+        print("Error: wrong value\n")
 
     def user_inputs(self):
-        # User Interface
-        self.invoice_number = input("Invoice number: ")
+        # ask the invoice number
+        while True:
+            try:
+                self.invoice_number = int(input("Invoice number: "))
+                break
+            except ValueError:
+                self.error()
         self.date = input("Date: ")
         self.invoice_from = input("Invoice from: ")
         self.invoice_from_address = input("Address: ")
         self.invoice_to = input("Invoice to: ")
         self.invoice_to_address = input("Address: ")
-        self.rows = int(input("How many lines you need? "))
+        # ask the number of lines
+        while True:
+            try:
+                self.rows = int(input("How many lines you need? "))
+                break
+            except ValueError:
+                self.error()
         # Loop for asking the main lines
         for i in range(self.rows):
             print(f"\n-----LINE {i+1} -----")
             self.desc = input("Insert description: ")
-            self.quant = int(input("Insert quantity: "))
-            self.rate = int(input("Insert rate: "))
+            # ask the quantity
+            while True:
+                try:
+                    self.quant = int(input("Insert quantity: "))
+                    break
+                except ValueError:
+                    self.error()
+            # ask the rate
+            while True:
+                try:
+                    self.rate = int(input("Insert rate: "))
+                    break
+                except ValueError:
+                    self.error()
             invoice.row(desc=self.desc, quant=self.quant, rate=self.rate)
         self.notes = input("\nInsert any notes: ")
         print("\n\n\n")
+
+
     
     def output(self):
         # header
@@ -67,6 +97,7 @@ class InvoiceGenerator(Terminal_user_interface):
         amount = quant * rate
         self.total += amount
         self.lines.append([desc, quant, rate, amount])
+
 
 invoice = InvoiceGenerator()
 invoice.user_inputs()
