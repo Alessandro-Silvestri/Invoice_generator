@@ -2,7 +2,7 @@
 PYTHON INVOICE GENERATOR
 
 Through the terminal interface the user can insert all the required data.
-The integer inputs values are handled with exceptions.
+The integer input values are handled with exceptions.
 Made by Alessandro Silvestri - 2023 <alessandro.silvestri.work@gmail.com>
 '''
 
