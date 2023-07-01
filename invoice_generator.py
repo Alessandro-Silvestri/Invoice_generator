@@ -1,8 +1,9 @@
 '''
-INVOICE GENERATOR
-It works 
-Made by Alessandro Silvestri © 2023 <alessandro.silvestri.work@gmail.com>
+PYTHON INVOICE GENERATOR
 
+Through the terminal interface the user can insert all the required data.
+The integer inputs values are handled with exceptions.
+Made by Alessandro Silvestri - 2023 <alessandro.silvestri.work@gmail.com>
 '''
 
 class Terminal_user_interface():
@@ -69,8 +70,6 @@ class Terminal_user_interface():
         self.notes = input("\nInsert any notes: ")
         print("\n\n\n")
 
-
-    
     def output(self):
         # header
         print(self.pretty_header(self.invoice_from, self.invoice_number))
