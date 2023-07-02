@@ -4,11 +4,6 @@ PYTHON INVOICE GENERATOR
 Through the terminal interface the user can insert all the required data.
 The integer input values are handled with exceptions.
 Made by Alessandro Silvestri - 2023 <alessandro.silvestri.work@gmail.com>
-
-##### bugs to fix ###########################################
-add the currency
-#############################################################
-
 '''
 
 class Terminal_user_interface():
@@ -21,14 +16,14 @@ class Terminal_user_interface():
     def pretty_print_line(self, job, quantity, rate, amount):
         space = " "
         space1 = 43 - len(job) - len(str(quantity))
-        space2 = 11 - len(str(rate))
-        space3 = 14 - len(str(amount))
-        return f"{job}{space*space1}{quantity}{space*space2}{rate}{space*space3}{amount}"
+        space2 = 9 - len(str(rate))
+        space3 = 12 - len(str(amount))
+        return f"{job}{space*space1}{quantity}{space*space2}{rate} £{space*space3}{amount} £"
     
     def pretty_total(self, t):
         space = " "
-        spaces = 61 - len(str(t))
-        return f"{space*spaces}TOTAL: {t}"
+        spaces = 59 - len(str(t))
+        return f"{space*spaces}TOTAL: {t} £"
     
     def error(self):
         print("Error: wrong value\n")
